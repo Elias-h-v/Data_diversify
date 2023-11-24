@@ -21,6 +21,9 @@ def rentabilidades():
     fecha_datepicker = request.form.get('datepicker')
     df = pd.read_csv('uploads/rentabilidades_acumuladas.csv', sep=";", index_col=None)
 
+    #Nuevo % rent acumu
+    df['rent_acumulada'] = (df['rent_acumulada'] * 100).map('{:.2f}%'.format)
+
     df['fecha'] = pd.to_datetime(df['fecha'], format='%Y-%m-%d')
     fechas = df['fecha'].unique()
 
@@ -91,6 +94,9 @@ def ren_graficos():
     # Crear el gráfico de barras con Plotly Express utilizando el DataFrame filtrado
     fig = px.bar(df_filtrado, x='periodo', y='rent_acumulada', title=f'Rentabilidad Acumulada a lo largo del tiempo para el fondo {run_selected} en la fecha {fecha_datepicker}')
 
+    # Ajustar las etiquetas del eje y para agregar el símbolo de porcentaje
+    fig.update_layout(yaxis_tickformat='.2%')
+    
     # Convierte el gráfico a un formato HTML
     grafico_html = fig.to_html(full_html=False)
 
