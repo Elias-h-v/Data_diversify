@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import pandas as pd
 from datetime import datetime
 import calendar
+import plotly.express as px
 
 app = Flask(__name__)
 
@@ -13,6 +14,7 @@ def index():
 @app.route('/fondos-mutuos')
 def fondos_mutuos():
     return render_template('index.html')
+
 
 @app.route('/rentabilidades', methods=['GET', 'POST'])
 def rentabilidades():
@@ -62,6 +64,38 @@ def portafolios():
         html = get_portafolio(run, tipo_cartera, fecha)
 
     return render_template('portafolios.html', fondos=fondos, tipos=['Nacional', 'Internacional'], html=html)
+
+#Nuevo
+@app.route('/rentabilidades-graficos', methods=['GET', 'POST'])
+def ren_graficos():
+    fecha_datepicker = request.form.get('datepicker', default='07/31/2023')
+    run_selected = request.form.get('run', default=None)
+    
+    # Convertir la fecha al formato del DataFrame
+    fecha_datepicker_formatted = datetime.strptime(fecha_datepicker, '%m/%d/%Y').strftime('%Y-%m-%d')
+
+    df = pd.read_csv('uploads/rentabilidades_acumuladas.csv', sep=";", index_col=None)
+
+    # Obtén la lista de RUT únicos de la columna 'Run Fondo'
+    runs = df['Run Fondo'].unique()
+
+    # Filtrar por fecha y run seleccionado usando la función query
+    df_filtrado = df.query(f"fecha == '{fecha_datepicker_formatted}' and `Run Fondo` == {run_selected}")
+
+    # Revisar infoS
+    print(df)
+    print(df_filtrado)
+    print(f"Fecha seleccionada: {fecha_datepicker}")
+    print(f"RUT seleccionado: {run_selected}")
+
+    # Crear el gráfico de barras con Plotly Express utilizando el DataFrame filtrado
+    fig = px.bar(df_filtrado, x='periodo', y='rent_acumulada', title=f'Rentabilidad Acumulada a lo largo del tiempo para el fondo {run_selected} en la fecha {fecha_datepicker}')
+
+    # Convierte el gráfico a un formato HTML
+    grafico_html = fig.to_html(full_html=False)
+
+    return render_template('rent_graf.html', fecha=fecha_datepicker, runs=runs, grafico_html=grafico_html)
+
 
 @app.route('/detalle-fondo/<run>', methods=['POST','GET'])
 def detalle_fondo(run):
