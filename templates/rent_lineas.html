@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <form id="myForm" method="post">
+        <h1>Rentabilidad y Gráficos de Líneas FFMM</h1>
+        <div class="form-container">
+            <table>
+                <tr>
+                    <td>
+                        <label for="datepicker">Seleccionar Fecha:</label>
+                    </td>
+                    <td> 
+                        <input type="text" id="datepicker" name="datepicker" value="{{ fecha }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="run">Seleccionar RUT:</label>
+                    </td>
+                    <td style="margin-right: 10px;">
+                        <select id="run" name="run">
+                            {% for rut in runs %}
+                                <option value="{{ rut }}">{{ rut }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button class="boton" onclick="submitForm()">Consultar</button>
+                    </td>
+                </tr>
+            </table>
+            <!-- Agregamos un contenedor para el gráfico de líneas -->
+            <div id="grafico-lineas-container">
+                {{ grafico_lineas_html|safe }}
+            </div>
+        </div>
+    </form>
+
+    <script>
+        function submitForm() {
+            var form = document.getElementById('myForm');
+            form.action = '/rentabilidades-graficos-lineas';  // Utilizamos la ruta correspondiente a los gráficos de líneas
+            form.submit();
+        }
+
+        $(document).ready(function() {
+            $("#datepicker").datepicker({
+                altFormat: 'yy-mm-dd',
+                defaultDate: new Date('{{ fecha }}')
+            });
+        });
+    </script>
+{% endblock %}
