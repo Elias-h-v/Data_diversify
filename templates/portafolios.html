@@ -53,11 +53,15 @@
         form.submit();
     }
 
-    function submitForm() {
-        var form = document.getElementById('myForm');
-        form.action = '/detalle-fondo';
-        form.submit();
-    }
+    function submitForm(run) {
+            // Puedes hacer algo con el valor de run, por ejemplo, imprimirlo
+            console.log('Valor de run:', run);
+    
+            // Ahora puedes usar el valor de run en tu lógica, por ejemplo, cambiar la acción del formulario
+            var form = document.getElementById('myForm');
+            form.action = '/detalle-fondo/' + run;
+            form.submit();
+        }
     $(document).ready(function() {
         $("#datepicker").datepicker({
             altFormat: 'yy-mm-dd',
