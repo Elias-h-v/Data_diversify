@@ -179,34 +179,5 @@ def ultimo_dia_del_mes(fecha):
 
     return fecha_cierre_mes
 
-# Nuevo para gráficos de líneas
-@app.route('/rentabilidades-graficos-lineas', methods=['GET', 'POST'])
-def rent_lineas():
-    fecha_datepicker = request.form.get('datepicker', default='07/31/2023')
-    run_selected = request.form.get('run', default=None)
-    
-    # Convertir la fecha al formato del DataFrame
-    fecha_datepicker_formatted = datetime.strptime(fecha_datepicker, '%m/%d/%Y').strftime('%Y-%m-%d')
-
-    df = pd.read_csv('uploads/rentabilidades_acumuladas.csv', sep=";", index_col=None)
-
-    # Obtén la lista de RUT únicos de la columna 'Run Fondo'
-    runs = df['Run Fondo'].unique()
-
-    # Filtrar por fecha y run seleccionado usando la función query
-    df_filtrado = df.query(f"fecha == '{fecha_datepicker_formatted}' and `Run Fondo` == {run_selected}")
-
-    # Crear el gráfico de líneas con Plotly Express utilizando el DataFrame filtrado
-    fig = px.line(df_filtrado, x='periodo', y='rent_acumulada', title=f'Rentabilidad Acumulada a lo largo del tiempo para el fondo {run_selected} en la fecha {fecha_datepicker}')
-
-    # Ajustar las etiquetas del eje y para agregar el símbolo de porcentaje
-    fig.update_layout(yaxis_tickformat='.2%')
-    
-    # Convierte el gráfico a un formato HTML
-    grafico_lineas_html = fig.to_html(full_html=False)
-
-    return render_template('rent_lineas.html', fecha=fecha_datepicker, runs=runs, grafico_lineas_html=grafico_lineas_html)
-
-
 if __name__ == '__main__':
     app.run(debug=True)
