@@ -7,45 +7,64 @@
             <table>
                 <tr>
                     <td>
-                        <label for="datepicker">Seleccionar Fecha:</label>
+                        <div class="form-row">
+                            <label for="datepicker">Seleccionar Fecha:</label>
+                        </div>
                     </td>
-                    <td> 
-                        <input type="text" id="datepicker" name="datepicker" value="{{ fecha }}">
+                    <td>
+                        <div class="form-row">
+                            <input type="text" id="datepicker" name="datepicker" value="{{ fecha }}">
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="run">Seleccionar RUT:</label>
+                        <div class="form-row">
+                            <label for="run">Seleccionar RUT:</label>
+                        </div>
                     </td>
-                    <td style="margin-right: 10px;">
-                        <select id="run" name="run">
-                            {% for rut in runs %}
-                                <option value="{{ rut }}">{{ rut }}</option>
-                            {% endfor %}
-                        </select>
+                    <td>
+                        <div class="form-row">
+                            <select id="run" name="run" style="margin-right: 10px;">
+                                <option value="" {% if not selected_rut %}selected{% endif %}>Seleccionar</option>
+                                    {% for rut in runs %}
+                                        <option value="{{ rut }}" {% if rut == selected_rut %}selected{% endif %}> {{ rut }} </option>
+                                    {% endfor %}
+                            </select>
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="tipoGrafico">Seleccionar tipo de gráfico:</label>
+                        <div class="form-row">
+                            <label for="tipoGrafico">Seleccionar tipo de gráfico:</label>
+                        </div>
                     </td>
-                    <td> 
-                        <select id="tipoGrafico" name="tipoGrafico" onchange="cambiarTipoGrafico()">
-                            <option value="barras">Barras</option>
-                            <option value="lineas">Líneas</option>
-                        </select>
+                    <td>
+                        <div class="form-row">
+                            <select id="tipoGrafico" name="tipoGrafico" onchange="cambiarTipoGrafico()">
+                                <option value="" {% if not selected_tipo %}selected{% endif %}>Seleccionar</option>
+                                <option value="barras" {% if selected_tipo == 'barras' %}selected{% endif %}>Barras</option>
+                                <option value="lineas" {% if selected_tipo == 'lineas' %}selected{% endif %}>Líneas</option>
+                            </select>                            
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <button class="boton" onclick="submitForm()">Consultar</button>
+                        <div class="form-row">
+                            <button class="boton" onclick="submitForm()">Consultar</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="form-row" id="grafico-container">
+                            {{ grafico_html|safe }}
+                        </div>
                     </td>
                 </tr>
             </table>
-            <!-- Aquí agregamos un contenedor para el gráfico -->
-            <div id="grafico-container">
-                {{ grafico_html|safe }}
-            </div>
         </div>
     </form>
 
@@ -59,19 +78,16 @@
         $(document).ready(function() {
             $("#datepicker").datepicker({
                 altFormat: 'yy-mm-dd',
-                defaultDate: new Date('{{ fecha }}')
+                defaultDate: new Date('{{ fecha }}') 
             });
-        });
-    </script>
-
-    <script>
+        })
         function cambiarTipoGrafico() {
             // Obtén el contenedor del gráfico
-            var graficoContainer = document.getElementById('grafico-container');
-        
+            var graficoContainer = document.getElementById('grafico-container'); 
+            
             // Obtén el valor seleccionado del tipo de gráfico
             var nuevoTipo = document.getElementById('tipoGrafico').value;
-        
+
             // Recarga el gráfico con el nuevo tipo
             var graficoHTML = (nuevoTipo === 'barras') ? '{{ grafico_html }}' : '{{ grafico_lineas_html }}';
             graficoContainer.innerHTML = graficoHTML;
