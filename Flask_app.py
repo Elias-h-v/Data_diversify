@@ -83,23 +83,45 @@ def ren_graficos():
     # Obtén la lista de RUT únicos de la columna 'Run Fondo'
     runs = df['Run Fondo'].unique()
 
-    # Filtrar por fecha y run seleccionado usando la función query
-    df_filtrado = df.query(f"fecha == '{fecha_datepicker_formatted}' and `Run Fondo` == {run_selected}")
+    # Inicializar grafico_html con cadena vacía
+    grafico_html = 'Por favor, selecciona una opción'
+
+    # Manejar el caso de error: no se seleccionó run
+    if run_selected == '':
+        html_table = '<p>Seleccione Rut</p>'
+    else:
+        # Intentar filtrar el DataFrame
+        try:
+            df_filtrado = df.query(f"fecha == '{fecha_datepicker_formatted}' and `Run Fondo` == {run_selected}")
+        except Exception as e:
+            # Manejar errores de filtrado (puedes personalizar este mensaje de error)
+            html_table = f'<p>Error al filtrar datos: {str(e)}</p>'
+            df_filtrado = None  # Marcar df_filtrado como None en caso de error
 
     # Crear el gráfico según el tipo seleccionado
-    if tipo_grafico == 'barras':
-        fig = px.bar(df_filtrado, x='periodo', y='rent_acumulada', title=f'Rentabilidad Acumulada a lo largo del tiempo para el fondo {run_selected} en la fecha {fecha_datepicker}')
+    if run_selected == '':
+        html_table = '<p>Seleccione Rut</p>'
+    elif tipo_grafico == 'barras':
+        if df_filtrado is not None:
+            fig = px.bar(df_filtrado, x='periodo', y='rent_acumulada', title=f'Rentabilidad Acumulada a lo largo del tiempo para el fondo {run_selected} en la fecha {fecha_datepicker}')
+
+            # Ajustar las etiquetas del eje y para agregar el símbolo de porcentaje
+            fig.update_layout(yaxis_tickformat='.2%')
+
+            # Convierte el gráfico a un formato HTML
+            grafico_html = fig.to_html(full_html=False)
     elif tipo_grafico == 'lineas':
-        fig = px.line(df_filtrado, x='periodo', y='rent_acumulada', title=f'Rentabilidad Acumulada a lo largo del tiempo para el fondo {run_selected} en la fecha {fecha_datepicker}')
+        if df_filtrado is not None:
+            fig = px.line(df_filtrado, x='periodo', y='rent_acumulada', title=f'Rentabilidad Acumulada a lo largo del tiempo para el fondo {run_selected} en la fecha {fecha_datepicker}')
+
+            # Ajustar las etiquetas del eje y para agregar el símbolo de porcentaje
+            fig.update_layout(yaxis_tickformat='.2%')
+
+            # Convierte el gráfico a un formato HTML
+            grafico_html = fig.to_html(full_html=False)
     else:
         # Tipo de gráfico no reconocido, puedes manejarlo según tu lógica
-        return "Tipo de gráfico no válido"
-
-    # Ajustar las etiquetas del eje y para agregar el símbolo de porcentaje
-    fig.update_layout(yaxis_tickformat='.2%')
-    
-    # Convierte el gráfico a un formato HTML
-    grafico_html = fig.to_html(full_html=False)
+        html_table = '<p>Seleccione el tipo de grafico</p>'
 
     return render_template('rent_graf.html', fecha=fecha_datepicker, runs=runs, grafico_html=grafico_html)
 

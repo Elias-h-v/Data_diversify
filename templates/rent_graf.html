@@ -80,7 +80,7 @@
                 altFormat: 'yy-mm-dd',
                 defaultDate: new Date('{{ fecha }}') 
             });
-        })
+        });
         function cambiarTipoGrafico() {
             // Obtén el contenedor del gráfico
             var graficoContainer = document.getElementById('grafico-container'); 
@@ -88,9 +88,6 @@
             // Obtén el valor seleccionado del tipo de gráfico
             var nuevoTipo = document.getElementById('tipoGrafico').value;
 
-            // Recarga el gráfico con el nuevo tipo
-            var graficoHTML = (nuevoTipo === 'barras') ? '{{ grafico_html }}' : '{{ grafico_lineas_html }}';
-            graficoContainer.innerHTML = graficoHTML;
         }
     </script>
 
