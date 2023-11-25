@@ -73,6 +73,7 @@ def portafolios():
 def ren_graficos():
     fecha_datepicker = request.form.get('datepicker', default='07/31/2023')
     run_selected = request.form.get('run', default=None)
+    tipo_grafico = request.form.get('tipoGrafico', default='barras')  
     
     # Convertir la fecha al formato del DataFrame
     fecha_datepicker_formatted = datetime.strptime(fecha_datepicker, '%m/%d/%Y').strftime('%Y-%m-%d')
@@ -85,14 +86,14 @@ def ren_graficos():
     # Filtrar por fecha y run seleccionado usando la función query
     df_filtrado = df.query(f"fecha == '{fecha_datepicker_formatted}' and `Run Fondo` == {run_selected}")
 
-    # Revisar infoS
-    #print(df)
-    #print(df_filtrado)
-    #print(f"Fecha seleccionada: {fecha_datepicker}")
-    #print(f"RUT seleccionado: {run_selected}")
-
-    # Crear el gráfico de barras con Plotly Express utilizando el DataFrame filtrado
-    fig = px.bar(df_filtrado, x='periodo', y='rent_acumulada', title=f'Rentabilidad Acumulada a lo largo del tiempo para el fondo {run_selected} en la fecha {fecha_datepicker}')
+    # Crear el gráfico según el tipo seleccionado
+    if tipo_grafico == 'barras':
+        fig = px.bar(df_filtrado, x='periodo', y='rent_acumulada', title=f'Rentabilidad Acumulada a lo largo del tiempo para el fondo {run_selected} en la fecha {fecha_datepicker}')
+    elif tipo_grafico == 'lineas':
+        fig = px.line(df_filtrado, x='periodo', y='rent_acumulada', title=f'Rentabilidad Acumulada a lo largo del tiempo para el fondo {run_selected} en la fecha {fecha_datepicker}')
+    else:
+        # Tipo de gráfico no reconocido, puedes manejarlo según tu lógica
+        return "Tipo de gráfico no válido"
 
     # Ajustar las etiquetas del eje y para agregar el símbolo de porcentaje
     fig.update_layout(yaxis_tickformat='.2%')

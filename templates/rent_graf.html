@@ -26,6 +26,17 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>
+                        <label for="tipoGrafico">Seleccionar tipo de gráfico:</label>
+                    </td>
+                    <td> 
+                        <select id="tipoGrafico" name="tipoGrafico" onchange="cambiarTipoGrafico()">
+                            <option value="barras">Barras</option>
+                            <option value="lineas">Líneas</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
                     <td colspan="2">
                         <button class="boton" onclick="submitForm()">Consultar</button>
                     </td>
@@ -52,4 +63,19 @@
             });
         });
     </script>
+
+    <script>
+        function cambiarTipoGrafico() {
+            // Obtén el contenedor del gráfico
+            var graficoContainer = document.getElementById('grafico-container');
+        
+            // Obtén el valor seleccionado del tipo de gráfico
+            var nuevoTipo = document.getElementById('tipoGrafico').value;
+        
+            // Recarga el gráfico con el nuevo tipo
+            var graficoHTML = (nuevoTipo === 'barras') ? '{{ grafico_html }}' : '{{ grafico_lineas_html }}';
+            graficoContainer.innerHTML = graficoHTML;
+        }
+    </script>
+
 {% endblock %}
