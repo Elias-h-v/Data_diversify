@@ -298,9 +298,9 @@ tr:hover {
 /* Botones */
 /* Estilo para el botón Obtener Rentabilidades */
 .boton {
-    background-color: #007BFF;
-    color: #fff;
-    height: 30px;
+    background-color: #7dabdd; /* 007BFF original */
+    color: #1d0303;  /* fff original */
+    height: 33  px;
     padding: 10px 20px;
     font-size: 12px;
     border: none;
@@ -312,7 +312,8 @@ tr:hover {
 
 /* Cambio de color al pasar el ratón sobre el botón */
 .boton:hover {
-    background-color: #0056b3;
+    background-color: #38445f; /* 0056b3 original */
+    color: #fff
 }
 
 /* Estilo para los enlaces */
