@@ -7,7 +7,8 @@
 
 body {
     font-family: 'Cinzel', sans-serif;
-    background: #f4f4f4; 
+    font-weight: 800;
+    background: #d4c0c0; /* f4f4f4 original */
     color: #333;
 }
 
@@ -59,7 +60,7 @@ a:focus {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #394867;
+    background: #516080; /* 394867 original  */
     color: #fff;
     transition: all 0.3s;
     height: 100vh;
@@ -71,7 +72,7 @@ a:focus {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #29354E;
+    background: #38445f;  /*  29354E original   */
 }
 
 #sidebar ul.components {
@@ -149,7 +150,7 @@ a.article:hover {
     min-height: 100vh;
     transition: all 0.3s;
     margin-left: 15px;
-    background: #fff;
+    background: #e9e0e0; /*fff original */
 }
 
 /* Encabezados */
@@ -195,8 +196,8 @@ th, td {
 }
 
 th {
-    background-color: #394867;
-    color: #fff;
+    background-color: #394867; /* #394867 color original */
+    color: #fff; /*  #fff  color letra original*/
 }
 
 tr:hover {
