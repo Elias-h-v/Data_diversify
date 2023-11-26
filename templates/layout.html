@@ -12,7 +12,38 @@
             $("#datepicker").datepicker();
         });
     </script>
+    <script>
+        $(function () {
+            $("#sidebarCollapse").on("click", function() {
+                $("#sidebar").toggleClass("active");
+                $(this).toggleClass("active");
+            });
+        });
+    </script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        #sidebarCollapse {
+            position: fixed;
+            top: 53%;
+            transform: translateY(-50%);
+            left: 0;
+            z-index: 999;
+            background-color: #c1dce6; /* Celeste claro */
+            border: none;
+            padding: 6px;
+            cursor: pointer;    
+        }
+    
+        #sidebarCollapse.active span::before {
+            content: '\2039';
+            color: rgb(43, 6, 6); /* Blanco */
+        }
+    
+        #sidebarCollapse:not(.active) span::before {
+            content: '\203A';
+            color: rgb(43, 6, 6); /* Blanco */
+        }
+    </style>    
 </head>
 <body>
 
@@ -39,6 +70,9 @@
             </ul>
         </nav>
         <div id="content">
+            <button type="button" id="sidebarCollapse" class="btn btn-info">
+                <span></span>
+            </button>
             {% block content %}{% endblock %}
         </div>
     </div>
