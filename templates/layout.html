@@ -28,21 +28,26 @@
             transform: translateY(-50%);
             left: 0;
             z-index: 999;
-            background-color: #c1dce6; /* Celeste claro */
+            background-color: rgb(12, 253, 253); /* Celeste claro */
             border: none;
             padding: 6px;
-            cursor: pointer;    
+            cursor: pointer;  
+            height: 60px;  
         }
     
-        #sidebarCollapse.active span::before {
-            content: '\2039';
-            color: rgb(43, 6, 6); /* Blanco */
-        }
-    
-        #sidebarCollapse:not(.active) span::before {
-            content: '\203A';
-            color: rgb(43, 6, 6); /* Blanco */
-        }
+        #sidebarCollapse::before {
+        content: '\2039'; /* Código de la flecha » */
+        color: rgb(43, 6, 6); /* Blanco */
+        font-size: 24px; /* Puedes ajustar el tamaño según tus preferencias */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #sidebarCollapse.active::before {
+        content: '\203A'; /* Código de la flecha « cuando está activo */
+    }
     </style>    
 </head>
 <body>
