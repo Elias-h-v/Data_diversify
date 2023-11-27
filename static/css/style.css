@@ -390,16 +390,18 @@ label{
 .sidebar-header h3 {
     margin: 0; /* Elimina el margen predeterminado del h3 para evitar espacio adicional */
 }
-/*Modificacion del.sedebar donde se encuentra Data diversifi*/
 
+/* Modificación del .sidebar donde se encuentra Data Diversify */
 .sidebar-header p {
     font-family: 'Cinzel', sans-serif;
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.4; /* Ajusta el espacio entre líneas (párrafos) */
     color: #555;
-    margin: 0; /* Elimina cualquier margen */
+    margin-top: 0; /* Elimina cualquier margen superior */
+    margin-bottom: 10px; /* Agrega un margen inferior para separar los párrafos */
 }
+
 
 .sidebar-header {
     text-align: center;
@@ -412,11 +414,30 @@ label{
 .sidebar-header h3 {
     margin: 0; /* Elimina el margen predeterminado del h3 para evitar espacio adicional */
 }
-/* muviemiento del header Data Diversify */
-
-@keyframes shine {
-    to {
-        background-position: 200% 100%;
-    }
+.sidebar-header {
+    position: relative;
+    overflow: hidden;
+}
+/*Efecto brillo header data diversify*/
+.shine-effect::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 300%; /*ancho*/
+    height: 100%;
+    background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+    animation: shine 5s linear infinite;
 }
 
+@keyframes shine {
+    0% {
+        left: -100%;
+    }
+    50% {
+        left: 100%;
+    }
+    100% {
+        left: -100%;
+    }
+}

@@ -51,19 +51,14 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3 style="color: #000;
-                           font-size: 24px;
-                           font-weight: bold;
-                           text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-                           background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-                           background-size: 200% 100%;
-                           animation: shine 2s infinite linear;">Data Diversify</h3>
-            </div>            
-                <p style="color: #fff;font-size: 16px;text-align: center; white-space: nowrap;">
-                    Inversiones Inteligentes<br>
-                    Inversiones de Calidad 
-                </p>
-            </div>            
+                <div class="shine-effect">
+                    <h3 style="color: #000; font-size: 24px; font-weight: bold;">Data Diversify</h3>
+                    <p style="color: #fff; font-size: 16px; text-align: center; white-space: nowrap;">
+                        Inversiones Inteligentes<br>
+                        Inversiones de Calidad
+                    </p>
+                </div>
+            </div>                        
             <ul class="list-unstyled components">
                 <li>
                     <a class="asidebar" href="{{ url_for('fondos_mutuos') }}">Sobre Fondos Mutuos</a>
