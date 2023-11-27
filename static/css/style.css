@@ -13,7 +13,7 @@ body {
 }
 
 p {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Cinzel', sans-serif;
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
@@ -379,3 +379,44 @@ label{
 .asidebar {
     color: #ddd;
 }
+.sidebar-header {
+    text-align: center;
+    padding: 20px; /* Añade espacio interno para mejorar la apariencia */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar-header h3 {
+    margin: 0; /* Elimina el margen predeterminado del h3 para evitar espacio adicional */
+}
+/*Modificacion del.sedebar donde se encuentra Data diversifi*/
+
+.sidebar-header p {
+    font-family: 'Cinzel', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.4; /* Ajusta el espacio entre líneas (párrafos) */
+    color: #555;
+    margin: 0; /* Elimina cualquier margen */
+}
+
+.sidebar-header {
+    text-align: center;
+    padding: 20px; /* Añade espacio interno para mejorar la apariencia */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar-header h3 {
+    margin: 0; /* Elimina el margen predeterminado del h3 para evitar espacio adicional */
+}
+/* muviemiento del header Data Diversify */
+
+@keyframes shine {
+    to {
+        background-position: 200% 100%;
+    }
+}
+

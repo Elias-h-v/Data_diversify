@@ -24,7 +24,7 @@
     <style>
         #sidebarCollapse {
             position: fixed;
-            top: 53%;
+            top: 50%;
             transform: translateY(-50%);
             left: 0;
             z-index: 999;
@@ -51,21 +51,32 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>App Fondos Mutuos</h3>
-            </div>
+                <h3 style="color: #000;
+                           font-size: 24px;
+                           font-weight: bold;
+                           text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+                           background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+                           background-size: 200% 100%;
+                           animation: shine 2s infinite linear;">Data Diversify</h3>
+            </div>            
+                <p style="color: #fff;font-size: 16px;text-align: center; white-space: nowrap;">
+                    Inversiones Inteligentes<br>
+                    Inversiones de Calidad 
+                </p>
+            </div>            
             <ul class="list-unstyled components">
                 <li>
-                    <a class="asidebar" href="{{ url_for('fondos_mutuos') }}">Sobre FFMM</a>
+                    <a class="asidebar" href="{{ url_for('fondos_mutuos') }}">Sobre Fondos Mutuos</a>
                 </li>
                 <li>
-                    <a class="asidebar" href="{{ url_for('rentabilidades') }}">Rentabilidades FFMM</a>
+                    <a class="asidebar" href="{{ url_for('rentabilidades') }}">Rentabilidades Fondos Mutuos</a>
                 </li>
                 <!--Nuevo agregado para ver graficos-->
                 <li>
                     <a class="asidebar" href="{{ url_for('ren_graficos') }}">Rentabilidades Graficos</a>
                 </li>
                 <li>
-                    <a class="asidebar" href="{{ url_for('portafolios') }}">Portafolio FFMM</a>
+                    <a class="asidebar" href="{{ url_for('portafolios') }}">Portafolio Fondos Mutuos</a>
                 </li>
             </ul>
         </nav>
