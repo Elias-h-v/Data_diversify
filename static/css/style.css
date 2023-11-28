@@ -426,10 +426,10 @@ label{
     left: -100%;
     width: 300%; /*ancho*/
     height: 100%;
-    background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.25) 50%, transparent 100%);
+    background: linear-gradient(to right, transparent 0%, rgba(15, 232, 247, 0.3), transparent 100%);
     animation: shine 5s linear infinite;
 }
-
+/*rgba(255, 255, 255, 0.4)*/
 @keyframes shine {
     0% {
         left: -100%;
@@ -447,4 +447,10 @@ label{
     font-weight: bold;
     text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7); /* Puedes ajustar los valores según sea necesario */
 }
-
+.mi-elemento {
+    background-image: url('../imagenes/Logo.png'); /* Ruta relativa a la ubicación del archivo CSS */
+    background-size: cover;
+    width: 300px;
+    height: 200px;
+  }
+  
