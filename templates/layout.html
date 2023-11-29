@@ -5,16 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flask App</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
         $(function () {
             $("#datepicker").datepicker();
         });
-    </script>
-    <script>
+
         $(function () {
-            $("#sidebarCollapse").on("click", function() {
+            $("#sidebarCollapse").on("click", function () {
                 $("#sidebar").toggleClass("active");
                 $(this).toggleClass("active");
             });
@@ -48,6 +48,23 @@
     #sidebarCollapse.active::before {
         content: '\203A'; /* Código de la flecha « cuando está activo */
     }
+     #sidebar ul li a {
+            color: #fff; /* Color del texto original */
+            padding: 10px;
+            font-size: 1.1em;
+            display: block;
+        }
+
+        #sidebar ul li a:hover {
+            color: #007BFF;
+            background: #fff;
+        }
+
+        #sidebar ul li.active>a,
+        a[aria-expanded="true"] {
+            color: #fff;
+            background: #29354E;
+        }
     </style>    
 </head>
 <body>
@@ -84,6 +101,9 @@
                 <li>
                     <a class="asidebar" href="{{ url_for('portafolios') }}">Portafolio Fondos Mutuos</a>
                 </li>
+                <div id="imagenInferiorIzquierda">
+                    <img src="{{ url_for('static', filename='css/imagenes/Logo.png') }}" alt="Logo">
+                </div>
             </ul>
         </nav>
         <div id="content">

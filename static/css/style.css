@@ -447,10 +447,43 @@ label{
     font-weight: bold;
     text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7); /* Puedes ajustar los valores según sea necesario */
 }
-.mi-elemento {
-    background-image: url('../imagenes/Logo.png'); /* Ruta relativa a la ubicación del archivo CSS */
-    background-size: cover;
-    width: 300px;
-    height: 200px;
-  }
   
+  #imagenInferiorIzquierda {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin: 10px;
+    width: 100px;
+    height: auto;
+}
+
+/* Estilo para el botón de desplazamiento del layout */
+#sidebarCollapse {
+    background-color: #007BFF; /* Color de fondo original */
+    color: #fff; /* Color del texto original */
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#sidebarCollapse:hover {
+    background-color: #0056b3; /* Cambio de color al pasar el ratón */
+}
+
+/* Nuevos estilos para la imagen inferior izquierda */
+#imagenInferiorIzquierda {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin: 10px;
+    width: 100px;
+    height: auto;
+}
+
+#imagenInferiorIzquierda img {
+    width: 250%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
