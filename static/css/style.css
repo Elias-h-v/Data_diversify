@@ -448,7 +448,7 @@ label{
     text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7); /* Puedes ajustar los valores según sea necesario */
 }
   
-  #imagenInferiorIzquierda {
+  #Logo_dataD {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -471,8 +471,8 @@ label{
     background-color: #0056b3; /* Cambio de color al pasar el ratón */
 }
 
-/* Nuevos estilos para la imagen inferior izquierda */
-#imagenInferiorIzquierda {
+/* Nuevos estilos para la imagen inferior izquierda  en este caso la imagen Lodo.png*/
+#Logo_dataD {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -481,9 +481,13 @@ label{
     height: auto;
 }
 
-#imagenInferiorIzquierda img {
+#Logo_dataD img {
     width: 250%;
     height: auto;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+/* Al precionar el boton sidebercollapse se deberia oculatar la imagen */
+#Logo_dataD.hidden {
+    display: none;
 }
